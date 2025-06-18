@@ -1,0 +1,106 @@
+---
+// This component will be enhanced with client-side search functionality
+---
+
+<div id="search-results" class="hidden mt-8">
+  <h2 class="text-2xl font-bold text-text-primary mb-6">Search Results</h2>
+  <div id="search-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <!-- Results will be populated by JavaScript -->
+  </div>
+  <div id="no-results" class="hidden text-center py-12">
+    <div class="text-6xl mb-4">🎮</div>
+    <h3 class="text-xl font-semibold text-text-primary mb-2">No games found</h3>
+    <p class="text-text-secondary">Try adjusting your search terms or browse our categories</p>
+  </div>
+</div>
+
+<script>
+  import games from '../data/games.json';
+  import Fuse from 'fuse.js';
+  
+  // Initialize Fuse.js for fuzzy search
+  const fuse = new Fuse(games, {
+    keys: ['title', 'description', 'tags', 'category'],
+    threshold: 0.3,
+    includeScore: true
+  });
+  
+  const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
+  const searchGrid = document.getElementById('search-grid');
+  const noResults = document.getElementById('no-results');
+  
+  function createGameCard(game) {
+    return `
+      <div class="bg-dark-light border border-gray-800 rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 hover:transform hover:scale-105 group">
+        <div class="relative">
+          <img 
+            src="${game.thumbnail}" 
+            alt="${game.title}"
+            class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+            loading="lazy"
+          />
+          ${game.is_hot ? `
+            <div class="absolute top-3 right-3 bg-primary text-white px-2 py-1 rounded-full text-xs font-bold animate-bounce-subtle">
+              🔥 HOT
+            </div>
+          ` : ''}
+        </div>
+        
+        <div class="p-4">
+          <h3 class="text-lg font-semibold text-text-primary mb-2 group-hover:text-primary transition-colors">
+            ${game.title}
+          </h3>
+          <p class="text-text-secondary text-sm mb-3 line-clamp-2">
+            ${game.description}
+          </p>
+          
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex flex-wrap gap-1">
+              ${game.tags.slice(0, 2).map(tag => `
+                <span class="bg-gray-800 text-text-secondary px-2 py-1 rounded-full text-xs">
+                  ${tag}
+                </span>
+              `).join('')}
+            </div>
+          </div>
+          
+          <a 
+            href="/game/${game.slug}"
+            class="block w-full bg-primary hover:bg-primary/80 text-white text-center py-2 rounded-lg transition-colors font-medium"
+          >
+            Play Now
+          </a>
+        </div>
+      </div>
+    `;
+  }
+  
+  function performSearch(query) {
+    if (!query.trim()) {
+      searchResults.classList.add('hidden');
+      return;
+    }
+    
+    const results = fuse.search(query);
+    searchResults.classList.remove('hidden');
+    
+    if (results.length === 0) {
+      searchGrid.classList.add('hidden');
+      noResults.classList.remove('hidden');
+    } else {
+      noResults.classList.add('hidden');
+      searchGrid.classList.remove('hidden');
+      searchGrid.innerHTML = results.map(result => createGameCard(result.item)).join('');
+    }
+  }
+  
+  // Debounce search to avoid too many API calls
+  let searchTimeout;
+  searchInput?.addEventListener('input', (e) => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+      performSearch(e.target.value);
+    }, 300);
+  });
+</script>

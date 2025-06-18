@@ -1,0 +1,285 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import GameCard from '../../components/GameCard.astro';
+import games from '../../data/games.json';
+import CommentBox from '../../components/CommentBox.jsx';
+
+export function getStaticPaths() {
+  return games.map(game => ({
+    params: { slug: game.slug },
+    props: { game }
+  }));
+}
+
+const { game } = Astro.props;
+const relatedGames = games
+  .filter(g => g.id !== game.id && g.category === game.category)
+  .slice(0, 4);
+
+const shareUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const shareTitle = `Play ${game.title} - HordeHub`;
+---
+
+<Layout 
+  title={`${game.title} - Free Online Game | HordeHub`}
+  description={game.description}
+  image={game.thumbnail}
+  type="article"
+>
+  <Header />
+  
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Breadcrumb -->
+    <nav class="mb-8">
+      <ol class="flex items-center space-x-2 text-text-secondary">
+        <li><a href="/" class="hover:text-primary transition-colors">Home</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li><a href="/games" class="hover:text-primary transition-colors">All Games</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li><a href={`/category/${game.category}`} class="hover:text-primary transition-colors capitalize">{game.category}</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li class="text-text-primary">{game.title}</li>
+      </ol>
+    </nav>
+
+    <!-- Game Header -->
+    <div class="mb-8">
+      <div class="flex items-start gap-4 mb-6">
+        <img 
+          src={game.thumbnail} 
+          alt={game.title}
+          class="w-24 h-24 object-cover rounded-xl"
+        />
+        <div class="flex-1">
+          <h1 class="text-3xl md:text-4xl font-bold text-text-primary mb-2">
+            {game.title}
+            {game.is_hot && <span class="text-primary ml-2">🔥</span>}
+          </h1>
+          <p class="text-text-secondary mb-4">{game.description}</p>
+          
+          <!-- Rating and Tags -->
+          <div class="flex items-center gap-4 mb-4">
+            <div class="flex items-center space-x-1">
+              {Array.from({ length: 5 }, (_, i) => (
+                <svg 
+                  class={`h-5 w-5 ${i < Math.floor(game.rating) ? 'text-yellow-400' : 'text-gray-600'}`} 
+                  fill="currentColor" 
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+              <span class="text-text-primary font-medium ml-2">{game.rating}/5</span>
+            </div>
+            
+            <div class="flex flex-wrap gap-2">
+              {game.tags.map(tag => (
+                <span class="bg-gray-800 text-text-secondary px-3 py-1 rounded-full text-sm">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social Share Buttons -->
+      <div class="flex gap-2 mb-6">
+        <a 
+          href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTitle)}&url=${encodeURIComponent(shareUrl)}`}
+          target="_blank"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors font-medium share-btn"
+          data-platform="twitter"
+        >
+          Share on Twitter
+        </a>
+        <a 
+          href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
+          target="_blank"
+          class="bg-blue-800 hover:bg-blue-900 text-white px-4 py-2 rounded-lg transition-colors font-medium share-btn"
+          data-platform="facebook"
+        >
+          Share on Facebook
+        </a>
+        <a 
+          href={`https://www.reddit.com/submit?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(shareTitle)}`}
+          target="_blank"
+          class="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg transition-colors font-medium share-btn"
+          data-platform="reddit"
+        >
+          Share on Reddit
+        </a>
+        <button 
+          style="margin-left: 12px; padding: 8px 16px; background: #b39ddb; color: #fff; border-radius: 6px; border: none; cursor: pointer; font-weight: 600;"
+          onclick="document.getElementById('game-iframe')?.requestFullscreen()"
+        >
+          🖥️ Make Game Full Screen
+        </button>
+      </div>
+    </div>
+
+    <!-- Game Container -->
+    <div class="bg-dark-light rounded-xl p-6 mb-8">
+      <div class="aspect-video bg-black rounded-lg overflow-hidden relative">
+        <iframe 
+          id="game-iframe"
+          src={game.iframe_url}
+          class="w-full h-full border-0"
+          allowfullscreen
+          title={game.title}
+          allow="gamepad; microphone; camera"
+        ></iframe>
+      </div>
+    </div>
+
+    <!-- Game Info Sections -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+      <!-- Main Content -->
+      <div class="lg:col-span-2 space-y-8">
+        <!-- Controls -->
+        <section class="bg-dark-light rounded-xl p-6">
+          <h2 id="game-controls-title" class="text-xl font-bold text-text-primary mb-4">🎮 Game Controls</h2>
+          <p class="text-text-secondary">{game.controls}</p>
+        </section>
+
+        <!-- Tips & Strategy -->
+        <section class="bg-dark-light rounded-xl p-6">
+          <h2 id="game-tips-title" class="text-xl font-bold text-text-primary mb-4">💡 Tips & Strategy</h2>
+          <p class="text-text-secondary">{game.tips}</p>
+        </section>
+
+        <!-- Screenshots -->
+        {game.screenshots && game.screenshots.length > 0 && (
+          <section class="bg-dark-light rounded-xl p-6">
+            <h2 id="game-screenshots-title" class="text-xl font-bold text-text-primary mb-4">📸 Screenshots</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {game.screenshots.map((screenshot, index) => (
+                <img 
+                  src={screenshot} 
+                  alt={`${game.title} screenshot ${index + 1}`}
+                  class="w-full h-48 object-cover rounded-lg"
+                  loading="lazy"
+                />
+              ))}
+            </div>
+          </section>
+        )}
+
+        <!-- Comments Section -->
+        <section class="bg-dark-light rounded-xl p-6">
+          <CommentBox game={game.slug} />
+        </section>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="space-y-6">
+        <!-- Game Stats -->
+        <div class="bg-dark-light rounded-xl p-6">
+          <h3 id="game-info-title" class="text-lg font-bold text-text-primary mb-4">Game Info</h3>
+          <div class="space-y-3">
+            <div class="flex justify-between">
+              <span class="text-text-secondary game-info-category">Category:</span>
+              <a href={`/category/${game.category}`} class="text-primary hover:text-primary/80 transition-colors capitalize">
+                {game.category}
+              </a>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-text-secondary game-info-rating">Rating:</span>
+              <span class="text-text-primary">{game.rating}/5</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-text-secondary game-info-release-date">Release Date:</span>
+              <span class="text-text-primary">{new Date(game.release_date).toLocaleDateString('en-US')}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="bg-dark-light rounded-xl p-6">
+          <h3 id="quick-actions-title" class="text-lg font-bold text-text-primary mb-4">Quick Actions</h3>
+          <div class="space-y-3">
+            <button id="rate-game-btn" class="w-full bg-primary hover:bg-primary/80 text-white py-2 rounded-lg transition-colors font-medium">
+              ⭐ Rate This Game
+            </button>
+            <button id="add-favorites-btn" class="w-full bg-gray-700 hover:bg-gray-600 text-text-primary py-2 rounded-lg transition-colors font-medium">
+              ❤️ Add to Favorites
+            </button>
+            <button id="report-issue-btn" class="w-full bg-gray-700 hover:bg-gray-600 text-text-primary py-2 rounded-lg transition-colors font-medium">
+              🚩 Report Issue
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Games -->
+    {relatedGames.length > 0 && (
+      <section class="mb-12">
+        <h2 id="similar-games-title" class="text-2xl font-bold text-text-primary mb-6">🎯 Similar Games</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {relatedGames.map(relatedGame => (
+            <GameCard game={relatedGame} />
+          ))}
+        </div>
+      </section>
+    )}
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  // Initialize Disqus comments (placeholder)
+  window.disqus_config = function () {
+    this.page.url = window.location.href;
+    this.page.identifier = window.location.pathname;
+  };
+  
+  // Note: In a real implementation, you would load the Disqus script here
+  // For demo purposes, we'll just show a placeholder message
+  const disqusThread = document.getElementById('disqus_thread');
+  if (disqusThread) {
+    disqusThread.innerHTML = `
+      <div class="text-center py-8 text-text-secondary">
+        <p class="mb-2">💬 Comments section will appear here</p>
+        <p class="text-sm">To enable comments, integrate Disqus, utterances, or another comment system</p>
+      </div>
+    `;
+  }
+</script>
+
+<style>
+  /* Custom button styles for quick actions */
+  #quick-actions-title {
+    position: relative;
+    display: inline-block;
+  }
+
+  #quick-actions-title::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: linear-gradient(to right, transparent, #ff6d1b, transparent);
+  }
+
+  /* Button styles */
+  .bg-primary {
+    background: #ff6d1b;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .bg-primary:hover {
+    background: #e65c00;
+  }
+</style>

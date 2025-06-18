@@ -1,0 +1,125 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import GameCard from '../components/GameCard.astro';
+import SearchResults from '../components/SearchResults.astro';
+import games from '../data/games.json';
+import categories from '../data/categories.json';
+
+const hotGames = games.filter(game => game.is_hot);
+const latestGames = games.sort((a, b) => new Date(b.release_date).getTime() - new Date(a.release_date).getTime()).slice(0, 4);
+const featuredCategories = categories.slice(0, 6);
+---
+
+<Layout title="HordeHub - Play Free Online Games">
+  <Header />
+  
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Hero Section -->
+    <section class="text-center py-16 animate-fade-in">
+      <h1 class="text-4xl md:text-6xl font-bold text-text-primary mb-6">
+        Welcome to <span class="text-primary">HordeHub</span>
+      </h1>
+      <p class="text-xl text-text-secondary mb-8 max-w-3xl mx-auto">
+        Discover thousands of free online games across all genres. Play instantly in your browser - no downloads required!
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/games" class="bg-primary hover:bg-primary/80 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+          Browse All Games
+        </a>
+        <a href="/hot" class="border border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+          🔥 Hot Games
+        </a>
+      </div>
+    </section>
+
+    <!-- Search Results (hidden by default) -->
+    <SearchResults />
+
+    <!-- Hot Games Section -->
+    <section class="mb-16 animate-slide-up">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl font-bold text-text-primary">🔥 Hot Games</h2>
+        <a href="/hot" class="text-primary hover:text-primary/80 transition-colors font-medium">
+          View All →
+        </a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {hotGames.slice(0, 4).map(game => (
+          <GameCard game={game} />
+        ))}
+      </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-text-primary mb-8 text-center">Game Categories</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        {featuredCategories.map(category => (
+          <a 
+            href={`/category/${category.id}`}
+            class="bg-dark-light border border-gray-800 rounded-xl p-6 text-center hover:border-primary/50 transition-all duration-300 hover:transform hover:scale-105 group"
+          >
+            <div class="text-4xl mb-3 group-hover:animate-bounce-subtle">{category.icon}</div>
+            <h3 class="text-text-primary font-semibold mb-2 group-hover:text-primary transition-colors">
+              {category.name}
+            </h3>
+            <p class="text-text-secondary text-sm">{category.description}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Latest Games Section -->
+    <section class="mb-16">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl font-bold text-text-primary">🆕 Latest Games</h2>
+        <a href="/games" class="text-primary hover:text-primary/80 transition-colors font-medium">
+          View All →
+        </a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {latestGames.map(game => (
+          <GameCard game={game} />
+        ))}
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="bg-dark-light rounded-2xl p-8 mb-16">
+      <h2 class="text-3xl font-bold text-text-primary mb-8 text-center">Why Choose HordeHub?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="bg-primary/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-text-primary mb-2">Instant Play</h3>
+          <p class="text-text-secondary">No downloads or installations. Click and play instantly in your browser.</p>
+        </div>
+        <div class="text-center">
+          <div class="bg-secondary/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-text-primary mb-2">100% Free</h3>
+          <p class="text-text-secondary">All games are completely free to play. No hidden fees or premium accounts required.</p>
+        </div>
+        <div class="text-center">
+          <div class="bg-accent/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-text-primary mb-2">All Genres</h3>
+          <p class="text-text-secondary">From action and adventure to puzzles and strategy - find games for every taste.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

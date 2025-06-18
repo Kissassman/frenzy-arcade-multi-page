@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import GameCard from '../components/GameCard.astro';
+import games from '../data/games.json';
+
+const hotGames = games.filter(game => game.is_hot);
+---
+
+<Layout title="Hot Games - HordeHub" description="Play the hottest and most popular games right now. Trending games that everyone is playing!">
+  <Header />
+  
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Page Header -->
+    <div class="text-center mb-12 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl p-8">
+      <div class="text-6xl mb-4 animate-bounce-subtle">🔥</div>
+      <h1 class="text-4xl font-bold text-text-primary mb-4">Hot Games</h1>
+      <p class="text-xl text-text-secondary mb-6">
+        The hottest and most popular games that everyone is playing right now!
+      </p>
+      <div class="text-text-secondary">
+        {hotGames.length} trending games
+      </div>
+    </div>
+
+    <!-- Hot Games Grid -->
+    {hotGames.length > 0 ? (
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {hotGames.map(game => (
+          <GameCard game={game} />
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-12">
+        <div class="text-6xl mb-4">🎮</div>
+        <h3 class="text-xl font-semibold text-text-primary mb-2">No hot games right now</h3>
+        <p class="text-text-secondary mb-6">Check back later for the latest trending games!</p>
+        <a href="/games" class="bg-primary hover:bg-primary/80 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+          Browse All Games
+        </a>
+      </div>
+    )}
+  </main>
+
+  <Footer />
+</Layout>

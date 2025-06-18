@@ -1,0 +1,68 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import GameCard from '../../components/GameCard.astro';
+import games from '../../data/games.json';
+import categories from '../../data/categories.json';
+
+export function getStaticPaths() {
+  return categories.map(category => ({
+    params: { category: category.id },
+    props: { category }
+  }));
+}
+
+const { category } = Astro.props;
+const categoryGames = games.filter(game => game.category === category.id);
+---
+
+<Layout 
+  title={`${category.name} Games - HordeHub`}
+  description={`Play the best ${category.name.toLowerCase()} games online for free. ${category.description}`}
+>
+  <Header />
+  
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Category Header -->
+    <div class="text-center mb-12 bg-dark-light rounded-2xl p-8">
+      <div class="text-6xl mb-4">{category.icon}</div>
+      <h1 class="text-4xl font-bold text-text-primary mb-4">{category.name} Games</h1>
+      <p class="text-xl text-text-secondary mb-6">{category.description}</p>
+      <div class="text-text-secondary">
+        {categoryGames.length} games available in this category
+      </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <nav class="mb-8">
+      <ol class="flex items-center space-x-2 text-text-secondary">
+        <li><a href="/" class="hover:text-primary transition-colors">Home</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li><a href="/games" class="hover:text-primary transition-colors">Games</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li class="text-text-primary">{category.name}</li>
+      </ol>
+    </nav>
+
+    <!-- Games Grid -->
+    {categoryGames.length > 0 ? (
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {categoryGames.map(game => (
+          <GameCard game={game} />
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-12">
+        <div class="text-6xl mb-4">🎮</div>
+        <h3 class="text-xl font-semibold text-text-primary mb-2">No games found</h3>
+        <p class="text-text-secondary mb-6">We're working on adding more {category.name.toLowerCase()} games!</p>
+        <a href="/games" class="bg-primary hover:bg-primary/80 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+          Browse All Games
+        </a>
+      </div>
+    )}
+  </main>
+
+  <Footer />
+</Layout>

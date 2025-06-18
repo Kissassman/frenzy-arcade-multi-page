@@ -1,0 +1,108 @@
+[
+  {
+    "id": "basketball-king",
+    "title": "Basketball King",
+    "slug": "basketball-king",
+    "description": "Step onto the court. Prepare for the ultimate basketball showdown with Basketball King! This slam dunk game isn't just about dribbling and shooting—it's about outsmarting your opponent, showing off your slick moves, and pulling off epic dunks.\n\nWhat makes Basketball King even cooler? The variety of game modes! Whether you're playing a quick match to kill some time, battling through intense tournaments, or going head-to-head with a friend in local multiplayer, there's never a dull moment. The game is all about having fun while dunking. And don't worry if you're not a basketball expert—this game is designed to be easy to pick up and hard to put down. So, lace up those sneakers, grab your basketball, and get ready to shoot, block, and dunk your way to victory. 🏀\n\nHow to Play Basketball King:\n- Choose from a lineup of characters, each with their unique style and stats.\n- Select your mode—quick match, tournament, or even play against a friend.\n- Dribble past your opponent, time your shots, and go for those jaw-dropping dunks.\n- Stay sharp to block shots, swipe the ball away and become a basketball king!\n\nWhat is More?\n- Power-Ups: Look out for bonus items that can give you an edge, like super shots or super defense.\n- Game Modes: Test your skills in one-on-one matches or compete in tournaments for the ultimate trophy.\n\nWho Created Basketball King?\nThis awesome game was developed by FreezeNova, the masterminds behind many fun and addictive games. They sure know how to bring the heat!\n\nMore Basketball Games\nBasketball King is all about skill, speed, and a little bit of smack talk. Whether you're schooling your buddy in multiplayer or climbing the ranks solo, the game guarantees endless fun and fierce competition. So, are you ready to hit the court and prove who's boss? 🏀",
+    "category": "sports",
+    "tags": ["sports", "basketball", "arcade"],
+    "iframe_url": "https://cloud.onlinegames.io/games/2024/construct/316/basketball-king/index-og.html",
+    "thumbnail": "/images/basketball-king/basketball-king-lg.jpg",
+    "screenshots": [
+      "/screenshots/basketball-king/screenshot-20250616-231330.png",
+      "/screenshots/basketball-king/screenshot-20250616-231414.png",
+      "/screenshots/basketball-king/screenshot-20250616-231426.png",
+      "/screenshots/basketball-king/screenshot-20250616-231441.png",
+      "/screenshots/basketball-king/screenshot-20250616-231457.png"
+    ],
+    "controls": "1st Player:\nWAD: Move\nS: Pump fake\nB: Shoot/Steal\nV: Activate special ability\nDouble D: Dash\n\n2nd Player:\nArrow Keys: Move\nDown Arrow: Pump fake\nL: Shoot/Steal\nK: Activate special ability\nDouble left/right arrow: Dash\n\nMobile:\nUse the on-screen joystick to move.\nTap buttons to shoot, steal, or unleash power moves.",
+    "tips": "Try to score consecutive baskets for bonus points!",
+    "rating": 4.3,
+    "is_hot": true,
+    "release_date": "2024-06-01"
+  },
+  {
+    "id": "monster-survivors",
+    "title": "Monster Survivors",
+    "slug": "monster-survivors",
+    "description": "Monster Survivors is a free online survival game with a minimalistic design and roguelite elements. The monsters are here, and you must survive! Aggressive crabs, eerie pumpkins, flesh-eating plants, and even evil bees! On a vast open land, there's no place to run or hide. Survive as long as you can until waves of monsters end your struggles. Gather loot in each run to buy upgrades, strengthen your survivor, and help the next survivor stand longer.",
+    "category": "action",
+    "tags": ["action", "survival", "roguelite"],
+    "iframe_url": "https://cloud.onlinegames.io/games/2025/unity/monster-survivors/index-og.html",
+    "thumbnail": "/images/Monster Survivors/Monster-survivors-lg.jpg",
+    "screenshots": [
+      "/screenshots/Monster Survivors/screenshot-20250617-232023.png",
+      "/screenshots/Monster Survivors/screenshot-20250617-232122.png",
+      "/screenshots/Monster Survivors/screenshot-20250617-232202.png",
+      "/screenshots/Monster Survivors/screenshot-20250617-232209.png"
+    ],
+    "controls": "Movement: Drag your mouse to move around the battlefield.",
+    "tips": "Collect loot to upgrade your survivor. Keep moving to gather XP and avoid being overwhelmed. Run in big circles to keep enemies at bay and collect XP efficiently. When boss enemies appear, the play area shrinks—be ready to dodge and fight in tighter spaces.",
+    "rating": 4.5,
+    "is_hot": true,
+    "release_date": "2025-06-01"
+  },
+  {
+    "id": "darkness-survivors",
+    "title": "Darkness Survivors",
+    "slug": "darkness-survivors",
+    "description": "Are you ready to battle with the darkness minions? Darkness Survivors is a 2D action game where you try to remove dark creatures from the battlefield. Choose from various hero characters, each with unique abilities, and slay enemies using swords, boomerangs, or other weapons. Collect dropped diamonds and coins to level up and unlock perks. Survive as long as you can and upgrade your hero for even greater power.",
+    "category": "action",
+    "tags": ["action", "rpg", "survival"],
+    "iframe_url": "https://www.onlinegames.io/games/2024/q2/darkness-survivors/index.html",
+    "thumbnail": "/images/Darkness Survivors Overview/image.png",
+    "screenshots": [
+      "/screenshots/Darkness Survivors Overview/image.png",
+      "/screenshots/Darkness Survivors Overview/image (1).png",
+      "/screenshots/Darkness Survivors Overview/image (2).png",
+      "/screenshots/Darkness Survivors Overview/image (3).png"
+    ],
+    "controls": "Desktop: WASD or Arrow Keys to move, Left-Click to select, or drag your hero with the mouse. Mobile: Use the virtual joystick to move your hero.",
+    "tips": "Collect coins and diamonds to upgrade your hero. Choose perks wisely at each level. Each hero has unique abilities—try them all!",
+    "rating": 4.2,
+    "is_hot": true,
+    "release_date": "2024-04-01"
+  },
+  {
+    "id": "masked-forces-zombie-survival",
+    "title": "Masked Forces Zombie Survival",
+    "slug": "masked-forces-zombie-survival",
+    "description": "Get ready to survive the invasion of zombies in Masked Forces Zombie Survival. In a post-apocalyptic world run by zombies, hesitation means defeat. Take up arms, team up your squad, and prepare for the battle. Play online or offline, upgrade your weapons and armor, and fight off waves of undead enemies.",
+    "category": "shooter",
+    "tags": ["shooter", "zombie", "survival", "multiplayer"],
+    "iframe_url": "https://www.onlinegames.io/games/2021/unity3/masked-forces-zombie-survival/index.html",
+    "thumbnail": "/images/Masked Forces Zombie Survival/image.png",
+    "screenshots": [
+      "/screenshots/Masked Forces Zombie Survival Controls/image.png",
+      "/screenshots/Masked Forces Zombie Survival Controls/image (1).png",
+      "/screenshots/Masked Forces Zombie Survival Controls/image (2).png",
+      "/screenshots/Masked Forces Zombie Survival Controls/image (3).png"
+    ],
+    "controls": "WASD or Arrow Keys: Move | C: Crouch | 1,2,3 or scroll: Change weapon | Left click: Shoot | Right click: Aim | R: Reload | F: Pick up a gun | Tab: Pause",
+    "tips": "Upgrade your weapons and armor regularly. Work with your team in online mode for better survival. Watch the map and keep an eye on your HP and ammo.",
+    "rating": 4.1,
+    "is_hot": true,
+    "release_date": "2021-08-01"
+  },
+  {
+    "id": "masked-special-forces",
+    "title": "Masked Special Forces",
+    "slug": "masked-special-forces",
+    "description": "Masked Special Forces is a multiplayer first-person shooter game with a myriad of customization options. Step into the shoes of a commander in the battle arena, team up, strategize, and take down opponents one by one. Access upgradable weapons, armory, kill messages, and victory dances. Ultra-realistic visuals and smooth gameplay deliver a captivating FPS experience. Join or create rooms, select detailed maps, and dive into intense battles. The game features six modes, four maps, and a wide variety of weapons and perks. If you enjoy Masked Forces, try Masked Forces Zombie Survival as well.\n\nContent Advisory: This game includes mature elements such as intense action, strong language, or violent sequences. Player discretion is advised.",
+    "category": "shooter",
+    "tags": ["shooter", "fps", "multiplayer", "action"],
+    "iframe_url": "https://www.onlinegames.io/games/2022/unity2/masked-special-forces/index.html",
+    "thumbnail": "/images/Masked Special Forces/Masked-Special-Forces-FPS-lg.jpg",
+    "screenshots": [
+      "/screenshots/Masked Special Forces/screenshot-20250618-202954.png",
+      "/screenshots/Masked Special Forces/screenshot-20250618-203025.png",
+      "/screenshots/Masked Special Forces/screenshot-20250618-203047.png",
+      "/screenshots/Masked Special Forces/screenshot-20250618-203103.png"
+    ],
+    "controls": "WASD or arrow keys: Move\nLeft mouse click: Fire\nRight mouse click: Aim\nSpace: Jump\nQ: Slide while running\nLeft shift: Run\n1,2,3 (or scroll): Change weapon\nE or F: Interact/Pick up weapon\nG: Throw dynamite\nH: Use medkit\nT: Chat\nL: Toggle cursor lock\nC: Crouch\nHold Tab: Show scoreboard\nEscape: Pause",
+    "tips": "Customize your loadout, use perks for an edge, and try all game modes and maps for the best experience.",
+    "rating": 4.4,
+    "is_hot": true,
+    "release_date": "2022-09-01"
+  }
+]

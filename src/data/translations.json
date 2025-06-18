@@ -1,0 +1,162 @@
+{
+  "en": {
+    "nav": {
+      "home": "Home",
+      "allGames": "All Games",
+      "categories": "Categories",
+      "hotGames": "Hot Games",
+      "search": "Search games..."
+    },
+    "game": {
+      "playNow": "Play Now",
+      "controls": "Game Controls",
+      "tips": "Tips & Strategy",
+      "screenshots": "Screenshots",
+      "comments": "Comments",
+      "gameInfo": "Game Info",
+      "category": "Category",
+      "rating": "Rating",
+      "releaseDate": "Release Date",
+      "quickActions": "Quick Actions",
+      "rateGame": "Rate This Game",
+      "addToFavorites": "Add to Favorites",
+      "reportIssue": "Report Issue",
+      "similarGames": "Similar Games",
+      "loading": "Loading game...",
+      "clickToStart": "Click to Start Game"
+    },
+    "share": {
+      "twitter": "Share on Twitter",
+      "facebook": "Share on Facebook",
+      "reddit": "Share on Reddit"
+    }
+  },
+  "zh": {
+    "nav": {
+      "home": "首页",
+      "allGames": "所有游戏",
+      "categories": "游戏分类",
+      "hotGames": "热门游戏",
+      "search": "搜索游戏..."
+    },
+    "game": {
+      "playNow": "立即游戏",
+      "controls": "游戏操作",
+      "tips": "游戏技巧",
+      "screenshots": "游戏截图",
+      "comments": "游戏评论",
+      "gameInfo": "游戏信息",
+      "category": "分类",
+      "rating": "评分",
+      "releaseDate": "发布日期",
+      "quickActions": "快速操作",
+      "rateGame": "为游戏评分",
+      "addToFavorites": "添加到收藏",
+      "reportIssue": "报告问题",
+      "similarGames": "相似游戏",
+      "loading": "正在加载游戏...",
+      "clickToStart": "点击开始游戏"
+    },
+    "share": {
+      "twitter": "分享到 Twitter",
+      "facebook": "分享到 Facebook",
+      "reddit": "分享到 Reddit"
+    }
+  },
+  "es": {
+    "nav": {
+      "home": "Inicio",
+      "allGames": "Todos los Juegos",
+      "categories": "Categorías",
+      "hotGames": "Juegos Populares",
+      "search": "Buscar juegos..."
+    },
+    "game": {
+      "playNow": "Jugar Ahora",
+      "controls": "Controles del Juego",
+      "tips": "Consejos y Estrategia",
+      "screenshots": "Capturas de Pantalla",
+      "comments": "Comentarios",
+      "gameInfo": "Información del Juego",
+      "category": "Categoría",
+      "rating": "Calificación",
+      "releaseDate": "Fecha de Lanzamiento",
+      "quickActions": "Acciones Rápidas",
+      "rateGame": "Calificar Juego",
+      "addToFavorites": "Añadir a Favoritos",
+      "reportIssue": "Reportar Problema",
+      "similarGames": "Juegos Similares",
+      "loading": "Cargando juego...",
+      "clickToStart": "Haz clic para Empezar"
+    },
+    "share": {
+      "twitter": "Compartir en Twitter",
+      "facebook": "Compartir en Facebook",
+      "reddit": "Compartir en Reddit"
+    }
+  },
+  "fr": {
+    "nav": {
+      "home": "Accueil",
+      "allGames": "Tous les Jeux",
+      "categories": "Catégories",
+      "hotGames": "Jeux Populaires",
+      "search": "Rechercher des jeux..."
+    },
+    "game": {
+      "playNow": "Jouer Maintenant",
+      "controls": "Contrôles du Jeu",
+      "tips": "Conseils et Stratégie",
+      "screenshots": "Captures d'écran",
+      "comments": "Commentaires",
+      "gameInfo": "Infos du Jeu",
+      "category": "Catégorie",
+      "rating": "Note",
+      "releaseDate": "Date de Sortie",
+      "quickActions": "Actions Rapides",
+      "rateGame": "Noter ce Jeu",
+      "addToFavorites": "Ajouter aux Favoris",
+      "reportIssue": "Signaler un Problème",
+      "similarGames": "Jeux Similaires",
+      "loading": "Chargement du jeu...",
+      "clickToStart": "Cliquez pour Commencer"
+    },
+    "share": {
+      "twitter": "Partager sur Twitter",
+      "facebook": "Partager sur Facebook",
+      "reddit": "Partager sur Reddit"
+    }
+  },
+  "de": {
+    "nav": {
+      "home": "Startseite",
+      "allGames": "Alle Spiele",
+      "categories": "Kategorien",
+      "hotGames": "Beliebte Spiele",
+      "search": "Spiele suchen..."
+    },
+    "game": {
+      "playNow": "Jetzt Spielen",
+      "controls": "Spielsteuerung",
+      "tips": "Tipps & Strategie",
+      "screenshots": "Screenshots",
+      "comments": "Kommentare",
+      "gameInfo": "Spiel-Info",
+      "category": "Kategorie",
+      "rating": "Bewertung",
+      "releaseDate": "Veröffentlichungsdatum",
+      "quickActions": "Schnellaktionen",
+      "rateGame": "Spiel Bewerten",
+      "addToFavorites": "Zu Favoriten",
+      "reportIssue": "Problem Melden",
+      "similarGames": "Ähnliche Spiele",
+      "loading": "Spiel wird geladen...",
+      "clickToStart": "Klicken zum Starten"
+    },
+    "share": {
+      "twitter": "Auf Twitter Teilen",
+      "facebook": "Auf Facebook Teilen",
+      "reddit": "Auf Reddit Teilen"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "action",
+    "name": "Action",
+    "description": "Fast-paced games that test your reflexes and skills",
+    "icon": "⚡",
+    "color": "#FF6B35"
+  },
+  {
+    "id": "adventure",
+    "name": "Adventure",
+    "description": "Explore worlds and discover mysterious stories",
+    "icon": "🗺️",
+    "color": "#4ECDC4"
+  },
+  {
+    "id": "puzzle",
+    "name": "Puzzle",
+    "description": "Brain-teasing challenges and logic games",
+    "icon": "🧩",
+    "color": "#45B7D1"
+  },
+  {
+    "id": "racing",
+    "name": "Racing",
+    "description": "High-speed driving and racing games",
+    "icon": "🏎️",
+    "color": "#F39C12"
+  },
+  {
+    "id": "strategy",
+    "name": "Strategy",
+    "description": "Deep thinking and tactical planning games",
+    "icon": "♟️",
+    "color": "#9B59B6"
+  },
+  {
+    "id": "arcade",
+    "name": "Arcade",
+    "description": "Classic arcade-style games with simple controls",
+    "icon": "🕹️",
+    "color": "#2ECC71"
+  }
+]

@@ -1,0 +1,12 @@
+name = "astro-comments-worker-dev"
+main = "src/index.js"
+compatibility_date = "2025-06-18"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "astro-comments"
+database_id = "2bf1a03c-132a-4ec1-803a-1d038ce1871a"
+
+[dev]
+port = 8788
+local = true 

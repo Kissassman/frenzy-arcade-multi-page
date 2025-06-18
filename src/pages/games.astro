@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import GameCard from '../components/GameCard.astro';
+import games from '../data/games.json';
+import categories from '../data/categories.json';
+
+const allGames = games.sort((a, b) => a.title.localeCompare(b.title));
+---
+
+<Layout title="All Games - HordeHub" description="Browse our complete collection of free online games across all categories.">
+  <Header />
+  
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Page Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-text-primary mb-4">All Games</h1>
+      <p class="text-xl text-text-secondary mb-8">
+        Browse our complete collection of {games.length} free online games
+      </p>
+      
+      <!-- Category Filter -->
+      <div class="flex flex-wrap justify-center gap-2 mb-8">
+        <button 
+          class="filter-btn bg-primary text-white px-4 py-2 rounded-lg font-medium transition-colors" 
+          data-category="all"
+        >
+          All Games
+        </button>
+        {categories.map(category => (
+          <button 
+            class="filter-btn bg-dark-light text-text-secondary hover:text-text-primary border border-gray-700 hover:border-primary px-4 py-2 rounded-lg font-medium transition-colors" 
+            data-category={category.id}
+          >
+            {category.icon} {category.name}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Games Grid -->
+    <div id="games-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {allGames.map(game => (
+        <div class="game-item" data-category={game.category}>
+          <GameCard game={game} />
+        </div>
+      ))}
+    </div>
+
+    <!-- No Results Message -->
+    <div id="no-games" class="hidden text-center py-12">
+      <div class="text-6xl mb-4">🎮</div>
+      <h3 class="text-xl font-semibold text-text-primary mb-2">No games found</h3>
+      <p class="text-text-secondary">Try selecting a different category</p>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  // Category filtering
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const gameItems = document.querySelectorAll('.game-item');
+  const gamesGrid = document.getElementById('games-grid');
+  const noGames = document.getElementById('no-games');
+  
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const category = button.dataset.category;
+      
+      // Update active button
+      filterButtons.forEach(btn => {
+        btn.classList.remove('bg-primary', 'text-white');
+        btn.classList.add('bg-dark-light', 'text-text-secondary', 'border', 'border-gray-700');
+      });
+      button.classList.add('bg-primary', 'text-white');
+      button.classList.remove('bg-dark-light', 'text-text-secondary', 'border', 'border-gray-700');
+      
+      // Filter games
+      let visibleCount = 0;
+      gameItems.forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+          item.style.display = 'block';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      
+      // Show/hide no results message
+      if (visibleCount === 0) {
+        gamesGrid.style.display = 'none';
+        noGames.classList.remove('hidden');
+      } else {
+        gamesGrid.style.display = 'grid';
+        noGames.classList.add('hidden');
+      }
+    });
+  });
+</script>

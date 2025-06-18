@@ -1,0 +1,134 @@
+---
+import languages from '../data/languages.json';
+---
+
+<div class="relative group">
+  <button id="language-selector" class="flex items-center space-x-2 px-3 py-2 text-text-secondary hover:text-text-primary transition-colors">
+    <span id="current-language-flag">🇺🇸</span>
+    <span id="current-language-name">English</span>
+    <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
+  
+  <div id="language-dropdown" class="absolute right-0 mt-2 w-48 bg-dark-light border border-gray-700 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+    {languages.map(language => (
+      <button 
+        class="language-option w-full text-left px-4 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-gray-800 transition-colors first:rounded-t-lg last:rounded-b-lg flex items-center space-x-2"
+        data-lang={language.code}
+      >
+        <span>{language.flag}</span>
+        <span>{language.name}</span>
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  import translations from '../data/translations.json';
+  
+  // Get current language from localStorage or default to 'en'
+  let currentLang = localStorage.getItem('language') || 'en';
+  
+  // Update UI elements based on current language
+  function updateLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('language', lang);
+    
+    const t = translations[lang];
+    if (!t) return;
+    
+    // Update language selector
+    const currentFlag = document.getElementById('current-language-flag');
+    const currentName = document.getElementById('current-language-name');
+    const languages = {
+      'en': { flag: '🇺🇸', name: 'English' },
+      'zh': { flag: '🇨🇳', name: '中文' },
+      'es': { flag: '🇪🇸', name: 'Español' },
+      'fr': { flag: '🇫🇷', name: 'Français' },
+      'de': { flag: '🇩🇪', name: 'Deutsch' }
+    };
+    
+    if (currentFlag && currentName && languages[lang]) {
+      currentFlag.textContent = languages[lang].flag;
+      currentName.textContent = languages[lang].name;
+    }
+    
+    // Update navigation
+    const homeLink = document.querySelector('a[href="/"]');
+    const gamesLink = document.querySelector('a[href="/games"]');
+    const hotLink = document.querySelector('a[href="/hot"]');
+    const categoriesBtn = document.querySelector('.nav-link:has(svg)');
+    const searchInput = document.getElementById('search-input');
+    
+    if (homeLink) homeLink.textContent = t.nav.home;
+    if (gamesLink) gamesLink.textContent = t.nav.allGames;
+    if (hotLink) hotLink.innerHTML = `🔥 ${t.nav.hotGames}`;
+    if (categoriesBtn) categoriesBtn.childNodes[0].textContent = t.nav.categories;
+    if (searchInput) searchInput.placeholder = t.nav.search;
+    
+    // Update game page elements if they exist
+    updateGamePageElements(t);
+  }
+  
+  function updateGamePageElements(t) {
+    // Game page specific elements
+    const elements = {
+      'game-controls-title': t.game.controls,
+      'game-tips-title': t.game.tips,
+      'game-screenshots-title': t.game.screenshots,
+      'game-comments-title': t.game.comments,
+      'game-info-title': t.game.gameInfo,
+      'quick-actions-title': t.game.quickActions,
+      'similar-games-title': t.game.similarGames,
+      'loading-text': t.game.loading,
+      'load-game-btn': t.game.clickToStart,
+      'play-now-btn': t.game.playNow,
+      'rate-game-btn': `⭐ ${t.game.rateGame}`,
+      'add-favorites-btn': `❤️ ${t.game.addToFavorites}`,
+      'report-issue-btn': `🚩 ${t.game.reportIssue}`
+    };
+    
+    Object.entries(elements).forEach(([id, text]) => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.textContent = text;
+      }
+    });
+    
+    // Update category, rating, release date labels
+    const categoryLabel = document.querySelector('.game-info-category');
+    const ratingLabel = document.querySelector('.game-info-rating');
+    const releaseDateLabel = document.querySelector('.game-info-release-date');
+    
+    if (categoryLabel) categoryLabel.textContent = `${t.game.category}:`;
+    if (ratingLabel) ratingLabel.textContent = `${t.game.rating}:`;
+    if (releaseDateLabel) releaseDateLabel.textContent = `${t.game.releaseDate}:`;
+    
+    // Update share buttons
+    const shareButtons = document.querySelectorAll('.share-btn');
+    shareButtons.forEach(btn => {
+      const platform = btn.dataset.platform;
+      if (platform && t.share[platform]) {
+        btn.textContent = t.share[platform];
+      }
+    });
+  }
+  
+  // Initialize language on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    updateLanguage(currentLang);
+  });
+  
+  // Language selector event listeners
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.language-option')) {
+      const lang = e.target.closest('.language-option').dataset.lang;
+      updateLanguage(lang);
+    }
+  });
+  
+  // Export for global access
+  window.updateLanguage = updateLanguage;
+  window.getCurrentLanguage = () => currentLang;
+</script>
