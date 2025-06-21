@@ -4,7 +4,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import GameCard from '../../components/GameCard.astro';
 import games from '../../data/games.json';
-import CommentBox from '../../components/CommentBox.jsx';
+import CusdisComments from '../../components/CusdisComments.astro';
 
 export function getStaticPaths() {
   return games.map(game => ({
@@ -168,8 +168,12 @@ const shareTitle = `Play ${game.title} - HordeHub`;
         )}
 
         <!-- Comments Section -->
-        <section class="bg-dark-light rounded-xl p-6">
-          <CommentBox game={game.slug} />
+        <section>
+          <CusdisComments
+            pageId={game.slug}
+            pageUrl={shareUrl}
+            pageTitle={game.title}
+          />
         </section>
       </div>
 
